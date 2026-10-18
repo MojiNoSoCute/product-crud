@@ -14,8 +14,11 @@ dotnev.config();
 // });
 
 
-const sequelize = process.env.DATABASE_URL
-  ? new Sequelize(process.env.DATABASE_URL, {
+const databaseURL =
+  process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
+
+const sequelize = databaseURL
+  ? new Sequelize(databaseURL, {
       dialect: "postgres",
       logging: false,
       dialectOptions: {
